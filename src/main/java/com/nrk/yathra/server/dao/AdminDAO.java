@@ -13,10 +13,14 @@ import java.util.Optional;
 public class AdminDAO {
     @Autowired
     private PostsRepository postsRepository;
-    public Boolean approvingPostsByUser(int postId) throws Exception {
+    public Boolean approvingPostsByUser(int postId, Boolean status) throws Exception {
         Optional<Posts> posts= postsRepository.findById(postId);
         if(!posts.isEmpty()) {
-            posts.get().setApprovedPost(true);
+            if(status !=null && status ==false){
+                posts.get().setApprovedPost(false);
+            }else {
+                posts.get().setApprovedPost(true);
+            }
             postsRepository.save(posts.get());
             return true;
         }else{

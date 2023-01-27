@@ -20,6 +20,7 @@ public class ProjectSecurityConfiguration {
                 .requestMatchers("/User/newUserRegister").permitAll()
                 .requestMatchers("/User/**").authenticated()
                 .requestMatchers("/Post/**").authenticated().
+                requestMatchers("/Admin/**").hasRole("ADMIN").
                 and().formLogin()
                 .and().httpBasic();
 

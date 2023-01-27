@@ -9,11 +9,11 @@ public class AdminServiceImpl {
     @Autowired
     private AdminDAO adminDAO;
 
-    public Boolean approvePostsByUser(int postId) throws Exception {
-        return  approvingPostsByUser(postId);
+    public Boolean approvePostsByUser(int postId, Boolean status) throws Exception {
+        return  approvingPostsByUser(postId,status);
     }
 
-    private Boolean approvingPostsByUser(int postId) throws Exception {
-        return adminDAO.approvingPostsByUser(postId);
+    private Boolean approvingPostsByUser(int postId, Boolean status) throws Exception {
+        return adminDAO.approvingPostsByUser(postId,status);
     }
 }

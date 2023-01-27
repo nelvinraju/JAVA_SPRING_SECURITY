@@ -11,7 +11,7 @@ public class AdminController {
     @Autowired
     private AdminServiceImpl adminServiceImpl;
     @PostMapping("/approvePost/{postId}")
-    public Boolean approvePostsByUser(@PathVariable int postId) throws Exception {
-        return adminServiceImpl.approvePostsByUser(postId);
+    public Boolean approvePostsByUser(@PathVariable int postId , @RequestParam(required = false) Boolean status) throws Exception {
+        return adminServiceImpl.approvePostsByUser(postId,status);
     }
 }
