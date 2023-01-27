@@ -4,6 +4,7 @@ import com.nrk.yathra.server.dao.UserDAO;
 import com.nrk.yathra.server.dto.Post;
 import com.nrk.yathra.server.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,12 +16,16 @@ import java.util.stream.Collectors;
 public class UserServiceImpl {
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User newUserRegister(User user) throws Exception {
         return registringNewuser(user);
     }
 
     private User registringNewuser(User user) throws Exception {
+        //hashing the password into db
+        user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         return userDAO.registringNewuser(user);
     }
 
